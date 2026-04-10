@@ -67,7 +67,6 @@ class ProjetoAdmin(admin.ModelAdmin):
 
 
 class MakingOfAdmin(admin.ModelAdmin):
-    list_display = ("titulo", "projeto")
     ordering = ("titulo",)
     search_fields = ("titulo", "descricao", "modificacoes")
 

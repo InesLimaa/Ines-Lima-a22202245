@@ -1,7 +1,6 @@
 from django.db import models
 
 
-# 📌 Licenciatura (tem de vir antes do Perfil)
 class Licenciatura(models.Model):
     nome = models.CharField(max_length=100)
     sigla = models.CharField(max_length=20)
@@ -10,11 +9,16 @@ class Licenciatura(models.Model):
     ano_inicio = models.IntegerField()
     plano_estudo_url = models.URLField(blank=True, null=True)
 
+    # NOVOS CAMPOS (API)
+    codigo = models.IntegerField(blank=True, null=True)
+    grau = models.CharField(max_length=50, blank=True, null=True)
+    unidade_organica = models.CharField(max_length=200, blank=True, null=True)
+
     def __str__(self):
         return self.nome
 
 
-# 📌 Perfil
+# Perfil
 class Perfil(models.Model):
     nome = models.CharField(max_length=100)
     fotografia = models.ImageField(upload_to='perfil/', blank=True, null=True)
@@ -34,14 +38,20 @@ class Perfil(models.Model):
         return self.nome
 
 
-# 📌 Unidade Curricular
 class UnidadeCurricular(models.Model):
     nome = models.CharField(max_length=100)
+    codigo = models.CharField(max_length=50, blank=True, null=True)
     ano_curricular = models.IntegerField()
     semestre = models.IntegerField()
     descricao = models.TextField()
     imagem = models.ImageField(upload_to='ucs/', blank=True, null=True)
     ects = models.IntegerField()
+
+    # NOVOS CAMPOS (API)
+    apresentacao = models.TextField(blank=True, null=True)
+    objetivos = models.TextField(blank=True, null=True)
+    programa = models.TextField(blank=True, null=True)
+    bibliografia = models.TextField(blank=True, null=True)
 
     licenciatura = models.ForeignKey(
         Licenciatura,
@@ -53,7 +63,7 @@ class UnidadeCurricular(models.Model):
         return self.nome
 
 
-# 📌 Tecnologia
+# Tecnologia
 class Tecnologia(models.Model):
     nome = models.CharField(max_length=100)
     logo = models.ImageField(upload_to='tecnologias/', blank=True, null=True)
@@ -65,7 +75,7 @@ class Tecnologia(models.Model):
         return self.nome
 
 
-# 📌 Competência
+# Competência
 class Competencia(models.Model):
     nome = models.CharField(max_length=100)
     descricao = models.TextField()
@@ -88,7 +98,7 @@ class Competencia(models.Model):
         return self.nome
 
 
-# 📌 Formação
+# Formação
 class Formacao(models.Model):
     titulo = models.CharField(max_length=100)
     entidade = models.CharField(max_length=100)
@@ -114,7 +124,7 @@ class Formacao(models.Model):
         return self.titulo
 
 
-# 📌 TFC
+# TFC
 class TFC(models.Model):
     titulo = models.CharField(max_length=200)
     autor = models.CharField(max_length=100)
@@ -132,7 +142,7 @@ class TFC(models.Model):
         return self.titulo
 
 
-# 📌 Projeto
+# Projeto
 class Projeto(models.Model):
     titulo = models.CharField(max_length=100)
     descricao = models.TextField()
@@ -167,18 +177,13 @@ class Projeto(models.Model):
         return self.titulo
 
 
-# 📌 Making Of
+# Making Of
 class MakingOf(models.Model):
     titulo = models.CharField(max_length=100)
     imagem = models.ImageField(upload_to='makingof/', blank=True, null=True)
     descricao = models.TextField()
     modificacoes = models.TextField()
 
-    projeto = models.ForeignKey(
-        Projeto,
-        on_delete=models.CASCADE,
-        related_name='makingofs'
-    )
 
     def __str__(self):
         return self.titulo
