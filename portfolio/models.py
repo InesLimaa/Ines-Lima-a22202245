@@ -40,10 +40,8 @@ class Perfil(models.Model):
 
 class UnidadeCurricular(models.Model):
     nome = models.CharField(max_length=100)
-    codigo = models.CharField(max_length=50, blank=True, null=True)
     ano_curricular = models.IntegerField()
     semestre = models.IntegerField()
-    descricao = models.TextField()
     imagem = models.ImageField(upload_to='ucs/', blank=True, null=True)
     ects = models.IntegerField()
 
@@ -52,6 +50,7 @@ class UnidadeCurricular(models.Model):
     objetivos = models.TextField(blank=True, null=True)
     programa = models.TextField(blank=True, null=True)
     bibliografia = models.TextField(blank=True, null=True)
+    
 
     licenciatura = models.ForeignKey(
         Licenciatura,
