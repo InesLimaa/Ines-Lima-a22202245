@@ -1,0 +1,31 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+<h2>Competências</h2>
+{% if competencias %}
+<table border="1">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Nível</th>
+            <th>Perfil</th>
+            <th>Tecnologias</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for competencia in competencias %}
+        <tr>
+            <td>{{ competencia.nome }}</td>
+            <td>{{ competencia.nivel }}</td>
+            <td>{{ competencia.perfil }}</td>
+            <td>{% for tecnologia in competencia.tecnologias.all %}{{ tecnologia }}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
+            <td><a href="{% url 'competencia_detail' competencia.id %}">Ver Detalhes</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Sem competências para exibir.</p>
+{% endif %}
+{% endblock %}

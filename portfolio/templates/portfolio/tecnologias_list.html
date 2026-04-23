@@ -1,0 +1,31 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+<h2>Tecnologias</h2>
+{% if tecnologias %}
+<table border="1">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Tipo</th>
+            <th>Interesse</th>
+            <th>Link</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tecnologia in tecnologias %}
+        <tr>
+            <td>{{ tecnologia.nome }}</td>
+            <td>{{ tecnologia.tipo }}</td>
+            <td>{{ tecnologia.interesse }}</td>
+            <td>{% if tecnologia.link %}<a href="{{ tecnologia.link }}">Ver</a>{% else %}-{% endif %}</td>
+            <td><a href="{% url 'tecnologia_detail' tecnologia.id %}">Ver Detalhes</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Sem tecnologias para exibir.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+<h2>Formações</h2>
+{% if formacoes %}
+<table border="1">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Entidade</th>
+            <th>Tipo</th>
+            <th>Período</th>
+            <th>Concluída</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for formacao in formacoes %}
+        <tr>
+            <td>{{ formacao.titulo }}</td>
+            <td>{{ formacao.entidade }}</td>
+            <td>{{ formacao.tipo }}</td>
+            <td>{{ formacao.data_inicio }} - {{ formacao.data_fim|default:"Atual" }}</td>
+            <td>{% if formacao.concluida %}Sim{% else %}Não{% endif %}</td>
+            <td><a href="{% url 'formacao_detail' formacao.id %}">Ver Detalhes</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Sem formações para exibir.</p>
+{% endif %}
+{% endblock %}

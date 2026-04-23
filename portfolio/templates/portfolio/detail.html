@@ -1,0 +1,42 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+<h2>{{ object.__class__.__name__ }}: {{ object }}</h2>
+
+{% if object.fotografia %}
+<img src="{{ object.fotografia.url }}" alt="Fotografia de {{ object }}">
+{% endif %}
+
+{% if object.imagem %}
+<img src="{{ object.imagem.url }}" alt="Imagem de {{ object }}">
+{% endif %}
+
+{% if object.logo %}
+<img src="{{ object.logo.url }}" alt="Logo de {{ object }}">
+{% endif %}
+
+<dl>
+    {% for field in fields %}
+    <dt>{{ field.label }}</dt>
+    <dd>{{ field.value|default:'-' }}</dd>
+    {% endfor %}
+</dl>
+
+{% if related %}
+<h3>Dados Relacionados</h3>
+{% for key, value in related.items %}
+<h4>{{ key }}</h4>
+{% if value %}
+<ul>
+    {% for item in value %}
+    <li>{{ item }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>Sem dados relacionados.</p>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+<a href="{% url 'portfolio_index' %}">Voltar ao Início</a>
+{% endblock %}

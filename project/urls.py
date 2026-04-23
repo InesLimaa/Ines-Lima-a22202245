@@ -22,8 +22,9 @@ from django.urls import path, include
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("escola/", include("escola_online.urls")), 
-    path("", include("escola_online.urls")),  #  rota para app escola sem precisar de escrever "escola"
+    path("escola/", include("escola_online.urls")),
+    path("portfolio/", include("portfolio.urls")),
+    path("", include("escola_online.urls")),  # rota para app escola sem precisar de escrever "escola"
 ]
 
 from django.conf import settings

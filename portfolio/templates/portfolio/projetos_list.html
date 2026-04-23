@@ -1,0 +1,33 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+<h2>Projetos</h2>
+{% if projetos %}
+<table border="1">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Perfil</th>
+            <th>Unidade Curricular</th>
+            <th>GitHub</th>
+            <th>Tecnologias</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for projeto in projetos %}
+        <tr>
+            <td>{{ projeto.titulo }}</td>
+            <td>{{ projeto.perfil }}</td>
+            <td>{{ projeto.unidade_curricular }}</td>
+            <td>{% if projeto.github_url %}<a href="{{ projeto.github_url }}">Ver</a>{% else %}-{% endif %}</td>
+            <td>{% for tecnologia in projeto.tecnologias.all %}{{ tecnologia }}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
+            <td><a href="{% url 'projeto_detail' projeto.id %}">Ver Detalhes</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Sem projetos para exibir.</p>
+{% endif %}
+{% endblock %}

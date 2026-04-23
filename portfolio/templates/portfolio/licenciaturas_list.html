@@ -1,0 +1,35 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+<h2>Licenciaturas</h2>
+{% if licenciaturas %}
+<table border="1">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Sigla</th>
+            <th>Instituição</th>
+            <th>Duração (anos)</th>
+            <th>Ano Início</th>
+            <th>Plano de Estudo</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for licenciatura in licenciaturas %}
+        <tr>
+            <td>{{ licenciatura.nome }}</td>
+            <td>{{ licenciatura.sigla }}</td>
+            <td>{{ licenciatura.instituicao }}</td>
+            <td>{{ licenciatura.duracao_anos }}</td>
+            <td>{{ licenciatura.ano_inicio }}</td>
+            <td>{% if licenciatura.plano_estudo_url %}<a href="{{ licenciatura.plano_estudo_url }}">Ver</a>{% else %}-{% endif %}</td>
+            <td><a href="{% url 'licenciatura_detail' licenciatura.id %}">Ver Detalhes</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Sem licenciaturas para exibir.</p>
+{% endif %}
+{% endblock %}

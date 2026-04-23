@@ -1,0 +1,33 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+<h2>Unidades Curriculares</h2>
+{% if unidades %}
+<table border="1">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Ano Curricular</th>
+            <th>Semestre</th>
+            <th>ECTS</th>
+            <th>Licenciatura</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for unidade in unidades %}
+        <tr>
+            <td>{{ unidade.nome }}</td>
+            <td>{{ unidade.ano_curricular }}</td>
+            <td>{{ unidade.semestre }}</td>
+            <td>{{ unidade.ects }}</td>
+            <td>{{ unidade.licenciatura }}</td>
+            <td><a href="{% url 'unidade_curricular_detail' unidade.id %}">Ver Detalhes</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Sem unidades curriculares para exibir.</p>
+{% endif %}
+{% endblock %}

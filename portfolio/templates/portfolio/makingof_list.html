@@ -1,0 +1,29 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+<h2>Making Of</h2>
+{% if makingofs %}
+<table border="1">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Descrição</th>
+            <th>Modificações</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for makingof in makingofs %}
+        <tr>
+            <td>{{ makingof.titulo }}</td>
+            <td>{{ makingof.descricao }}</td>
+            <td>{{ makingof.modificacoes }}</td>
+            <td><a href="{% url 'makingof_detail' makingof.id %}">Ver Detalhes</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Sem making of para exibir.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+<h2>Perfis</h2>
+{% if perfis %}
+<table border="1">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>LinkedIn</th>
+            <th>GitHub</th>
+            <th>Licenciatura</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for perfil in perfis %}
+        <tr>
+            <td>{{ perfil.nome }}</td>
+            <td>{{ perfil.email }}</td>
+            <td>{% if perfil.linkedin %}<a href="{{ perfil.linkedin }}">Ver</a>{% else %}-{% endif %}</td>
+            <td>{% if perfil.github %}<a href="{{ perfil.github }}">Ver</a>{% else %}-{% endif %}</td>
+            <td>{{ perfil.licenciatura }}</td>
+            <td><a href="{% url 'perfil_detail' perfil.id %}">Ver Detalhes</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Sem perfis para exibir.</p>
+{% endif %}
+{% endblock %}

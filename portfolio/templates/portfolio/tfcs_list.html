@@ -1,0 +1,33 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+<h2>TFCs</h2>
+{% if tfcs %}
+<table border="1">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Ano</th>
+            <th>Interesse</th>
+            <th>Tecnologias</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tfc in tfcs %}
+        <tr>
+            <td>{{ tfc.titulo }}</td>
+            <td>{{ tfc.autor }}</td>
+            <td>{{ tfc.ano }}</td>
+            <td>{{ tfc.interesse }}</td>
+            <td>{% for tecnologia in tfc.tecnologias.all %}{{ tecnologia }}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
+            <td><a href="{% url 'tfc_detail' tfc.id %}">Ver Detalhes</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Sem TFCs para exibir.</p>
+{% endif %}
+{% endblock %}
