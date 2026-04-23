@@ -16,10 +16,14 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include  
+
+## project/urls.py
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("escola/", include("escola_online.urls")), 
+    path("", include("escola_online.urls")),  #  rota para app escola sem precisar de escrever "escola"
 ]
 
 from django.conf import settings
