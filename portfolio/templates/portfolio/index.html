@@ -1,17 +1,52 @@
 {% extends "portfolio/base.html" %}
+{% load static %}
+
+{% block extra_head %}
+<style>
+.portfolio-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.portfolio-item {
+    display: block;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 2px solid #ddd;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    color: #333;
+    text-align: center;
+    width: 300px;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    border-color: #007bff;
+    background-color: #f8f9fa;
+}
+</style>
+{% endblock %}
 
 {% block content %}
 <h2>Portfolio</h2>
 <p>Escolha um dos dados do portfólio para consultar.</p>
-<ul>
-    <li><a href="{% url 'licenciaturas' %}">Licenciaturas</a></li>
-    <li><a href="{% url 'perfis' %}">Perfis</a></li>
-    <li><a href="{% url 'unidades_curriculares' %}">Unidades Curriculares</a></li>
-    <li><a href="{% url 'tecnologias' %}">Tecnologias</a></li>
-    <li><a href="{% url 'competencias' %}">Competências</a></li>
-    <li><a href="{% url 'formacoes' %}">Formações</a></li>
-    <li><a href="{% url 'tfcs' %}">TFCs</a></li>
-    <li><a href="{% url 'projetos' %}">Projetos</a></li>
-    <li><a href="{% url 'makingof' %}">Making Of</a></li>
-</ul>
+<div class="portfolio-list">
+    <a href="{% url 'licenciaturas' %}" class="portfolio-item">Licenciaturas</a>
+    <a href="{% url 'perfis' %}" class="portfolio-item">Perfis</a>
+    <a href="{% url 'unidades_curriculares' %}" class="portfolio-item">Unidades Curriculares</a>
+    <a href="{% url 'tecnologias' %}" class="portfolio-item">Tecnologias</a>
+    <a href="{% url 'competencias' %}" class="portfolio-item">Competências</a>
+    <a href="{% url 'formacoes' %}" class="portfolio-item">Formações</a>
+    <a href="{% url 'tfcs' %}" class="portfolio-item">TFCs</a>
+    <a href="{% url 'projetos' %}" class="portfolio-item">Projetos</a>
+    <a href="{% url 'makingof' %}" class="portfolio-item">Making Of</a>
+</div>
 {% endblock %}

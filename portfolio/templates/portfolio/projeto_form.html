@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>{% if object %}Editar{% else %}Criar{% endif %} Projeto</title>
+</head>
+<body>
+    <h1>{% if object %}Editar{% else %}Criar{% endif %} Projeto</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salvar</button>
+    </form>
+    <a href="{% url 'projetos' %}">Voltar à lista</a>
+</body>
+</html>

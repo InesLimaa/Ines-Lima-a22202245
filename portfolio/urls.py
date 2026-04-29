@@ -17,8 +17,11 @@ urlpatterns = [
     path('formacao/<int:id>/', views.formacao_detail, name='formacao_detail'),
     path('tfcs/', views.tfcs_view, name='tfcs'),
     path('tfc/<int:id>/', views.tfc_detail, name='tfc_detail'),
-    path('projetos/', views.projetos_view, name='projetos'),
+    path('projetos/', views.ProjetoListView.as_view(), name='projetos'),
     path('projeto/<int:id>/', views.projeto_detail, name='projeto_detail'),
+    path('projetos/create/', views.ProjetoCreateView.as_view(), name='projeto_create'),
+    path('projetos/<int:pk>/update/', views.ProjetoUpdateView.as_view(), name='projeto_update'),
+    path('projetos/<int:pk>/delete/', views.ProjetoDeleteView.as_view(), name='projeto_delete'),
     path('makingof/', views.makingof_view, name='makingof'),
     path('makingof/<int:id>/', views.makingof_detail, name='makingof_detail'),
 ]

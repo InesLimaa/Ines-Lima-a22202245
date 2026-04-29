@@ -1,4 +1,7 @@
 from django.shortcuts import render, get_object_or_404
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from .forms import ProjetoForm
 from .models import (
     Licenciatura,
     Perfil,
@@ -70,6 +73,30 @@ def projetos_view(request):
 def makingof_view(request):
     makingofs = MakingOf.objects.all()
     return render(request, 'portfolio/makingof_list.html', {'makingofs': makingofs})
+
+
+# CRUD para Projetos
+class ProjetoListView(ListView):
+    model = Projeto
+    template_name = 'portfolio/projetos_list.html'
+    context_object_name = 'projetos'
+
+class ProjetoCreateView(CreateView):
+    model = Projeto
+    form_class = ProjetoForm
+    template_name = 'portfolio/projeto_form.html'
+    success_url = reverse_lazy('projetos')
+
+class ProjetoUpdateView(UpdateView):
+    model = Projeto
+    form_class = ProjetoForm
+    template_name = 'portfolio/projeto_form.html'
+    success_url = reverse_lazy('projetos')
+
+class ProjetoDeleteView(DeleteView):
+    model = Projeto
+    template_name = 'portfolio/projeto_confirm_delete.html'
+    success_url = reverse_lazy('projetos')
 
 
 # Detalhes individuais

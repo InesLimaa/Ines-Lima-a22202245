@@ -24,7 +24,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("escola/", include("escola_online.urls")),
     path("portfolio/", include("portfolio.urls")),
-    path("", include("escola_online.urls")),  # rota para app escola sem precisar de escrever "escola"
+    path("", include("portfolio.urls")),  # rota padrão para portfolio
 ]
 
 from django.conf import settings
