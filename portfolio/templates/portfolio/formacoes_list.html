@@ -2,6 +2,16 @@
 
 {% block content %}
 <h2>Formações</h2>
+<a href="{% url 'formacao_create' %}">Criar Nova Formação</a>
+<ul>
+    {% for formacao in formacoes %}
+        <li>
+            {{ formacao.titulo }} - {{ formacao.entidade }}
+            <a href="{% url 'formacao_update' formacao.pk %}">Editar</a>
+            <a href="{% url 'formacao_delete' formacao.pk %}">Eliminar</a>
+        </li>
+    {% endfor %}
+</ul>
 {% if formacoes %}
 <table border="1">
     <thead>

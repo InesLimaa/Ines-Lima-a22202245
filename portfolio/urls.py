@@ -36,4 +36,9 @@ urlpatterns = [
     path('competencias/create/', views.CompetenciaCreateView.as_view(), name='competencia_create'),
     path('competencias/<int:pk>/delete/', views.CompetenciaDeleteView.as_view(), name='competencia_delete'),  
     path('competencias/<int:pk>/update/', views.CompetenciaUpdateView.as_view(), name='competencia_update'),
+
+    path('formacoes/<int:id>/', views.formacao_detail, name='formacao_detail'),
+    path('formacoes/create/', views.FormacaoCreateView.as_view(), name='formacao_create'),
+    path('formacoes/<int:pk>/delete/', views.FormacaoDeleteView.as_view(), name='formacao_delete'),  
+    path('formacoes/<int:pk>/update/', views.FormacaoUpdateView.as_view(), name='formacao_update'),
 ]

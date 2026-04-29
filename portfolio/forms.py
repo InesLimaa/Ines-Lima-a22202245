@@ -1,5 +1,5 @@
 from django import forms
-from .models import Competencia, Projeto, Tecnologia
+from .models import Competencia, Formacao, Projeto, Tecnologia
 
 class ProjetoForm(forms.ModelForm):
     class Meta:
@@ -27,4 +27,14 @@ class CompetenciaForm(forms.ModelForm):
             'descricao': forms.Textarea(attrs={'rows': 4}),
             'nivel': forms.Select(choices=[(1, 'Básico'), (2, 'Intermediário'), (3, 'Avançado')]),
             'tecnologias': forms.CheckboxSelectMultiple(),
+        }
+
+class FormacaoForm(forms.ModelForm):
+    class Meta:
+        model = Formacao
+        fields = ['titulo', 'entidade', 'tipo', 'data_inicio', 'data_fim', 'descricao', 'concluida']
+        widgets = {
+            'descricao': forms.Textarea(attrs={'rows': 4}),
+            'data_inicio': forms.DateInput(attrs={'type': 'date'}),
+            'data_fim': forms.DateInput(attrs={'type': 'date'}),
         }

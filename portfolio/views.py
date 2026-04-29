@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from .forms import CompetenciaForm, ProjetoForm, TecnologiaForm
+from .forms import CompetenciaForm, FormacaoForm, ProjetoForm, TecnologiaForm
 from .models import (
     Licenciatura,
     Perfil,
@@ -146,6 +146,29 @@ class CompetenciaDeleteView(DeleteView):
     template_name = 'portfolio/competencia_confirm_delete.html'
     success_url = reverse_lazy('competencias')
 
+#CRUD FORMACOES
+
+class FormacaoListView(ListView):
+    model = Formacao
+    template_name = 'portfolio/formacoes_list.html'
+    context_object_name = 'formacoes'
+
+class FormacaoCreateView(CreateView):
+    model = Formacao
+    form_class = FormacaoForm
+    template_name = 'portfolio/formacao_form.html'
+    success_url = reverse_lazy('formacoes')
+
+class FormacaoUpdateView(UpdateView):
+    model = Formacao
+    form_class = FormacaoForm
+    template_name = 'portfolio/formacao_form.html'
+    success_url = reverse_lazy('formacoes')
+
+class FormacaoDeleteView(DeleteView):
+    model = Formacao
+    template_name = 'portfolio/formacao_confirm_delete.html'
+    success_url = reverse_lazy('formacoes')
 
 # Detalhes individuais
 
