@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from .forms import ProjetoForm
+from .forms import CompetenciaForm, ProjetoForm, TecnologiaForm
 from .models import (
     Licenciatura,
     Perfil,
@@ -97,6 +97,54 @@ class ProjetoDeleteView(DeleteView):
     model = Projeto
     template_name = 'portfolio/projeto_confirm_delete.html'
     success_url = reverse_lazy('projetos')
+
+#CRUD PARA TECNOLOGIAS
+
+class TecnologiaListView(ListView):
+    model = Tecnologia
+    template_name = 'portfolio/tecnologias_list.html'
+    context_object_name = 'tecnologias'
+
+class TecnologiaCreateView(CreateView):
+    model = Tecnologia
+    form_class = TecnologiaForm
+    template_name = 'portfolio/tecnologia_form.html'
+    success_url = reverse_lazy('tecnologias')
+
+class TecnologiaUpdateView(UpdateView):
+    model = Tecnologia
+    form_class = TecnologiaForm
+    template_name = 'portfolio/tecnologia_form.html'
+    success_url = reverse_lazy('tecnologias')
+
+class TecnologiaDeleteView(DeleteView):
+    model = Tecnologia
+    template_name = 'portfolio/tecnologia_confirm_delete.html'
+    success_url = reverse_lazy('tecnologias')
+
+# CRUD para competencias
+
+class CompetenciaListView(ListView):
+    model = Competencia
+    template_name = 'portfolio/competencias_list.html'
+    context_object_name = 'competencias'
+
+class CompetenciaCreateView(CreateView):    
+    model = Competencia
+    form_class = CompetenciaForm
+    template_name = 'portfolio/competencia_form.html'
+    success_url = reverse_lazy('competencias')
+
+class CompetenciaUpdateView(UpdateView):
+    model = Competencia
+    form_class = CompetenciaForm
+    template_name = 'portfolio/competencia_form.html'
+    success_url = reverse_lazy('competencias')
+
+class CompetenciaDeleteView(DeleteView):  
+    model = Competencia
+    template_name = 'portfolio/competencia_confirm_delete.html'
+    success_url = reverse_lazy('competencias')
 
 
 # Detalhes individuais

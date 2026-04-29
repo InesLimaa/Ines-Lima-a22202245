@@ -17,11 +17,23 @@ urlpatterns = [
     path('formacao/<int:id>/', views.formacao_detail, name='formacao_detail'),
     path('tfcs/', views.tfcs_view, name='tfcs'),
     path('tfc/<int:id>/', views.tfc_detail, name='tfc_detail'),
+    
     path('projetos/', views.ProjetoListView.as_view(), name='projetos'),
     path('projeto/<int:id>/', views.projeto_detail, name='projeto_detail'),
     path('projetos/create/', views.ProjetoCreateView.as_view(), name='projeto_create'),
     path('projetos/<int:pk>/update/', views.ProjetoUpdateView.as_view(), name='projeto_update'),
     path('projetos/<int:pk>/delete/', views.ProjetoDeleteView.as_view(), name='projeto_delete'),
+    
     path('makingof/', views.makingof_view, name='makingof'),
     path('makingof/<int:id>/', views.makingof_detail, name='makingof_detail'),
+    
+    path('tecnologias/<int:id>/', views.tecnologia_detail, name='tecnologia_detail'),
+    path('tecnologias/create/', views.TecnologiaCreateView.as_view(), name='tecnologia_create'),
+    path('tecnologias/<int:pk>/delete/', views.TecnologiaDeleteView.as_view(), name='tecnologia_delete'),  
+    path('tecnologias/<int:pk>/update/', views.TecnologiaUpdateView.as_view(), name='tecnologia_update'),
+
+    path('competencias/<int:id>/', views.competencia_detail, name='competencia_detail'),
+    path('competencias/create/', views.CompetenciaCreateView.as_view(), name='competencia_create'),
+    path('competencias/<int:pk>/delete/', views.CompetenciaDeleteView.as_view(), name='competencia_delete'),  
+    path('competencias/<int:pk>/update/', views.CompetenciaUpdateView.as_view(), name='competencia_update'),
 ]
